@@ -157,6 +157,7 @@ def update_tags(post_id, selected_tags, applied_tags):
 
     # Check for tags that were removed
     for tag in applied_tags:
+        # Grab tag ID from model for easy searching
         post_tags.append(tag.id)
         if str(tag.id) not in selected_tags:
             rem_tag = PostTag.query.filter_by(post_id=post_id, tag_id=tag.id).one()
@@ -164,6 +165,7 @@ def update_tags(post_id, selected_tags, applied_tags):
             db.session.delete(rem_tag)
             db.session.commit()
 
+    # Check for tags that were added
     for tag in selected_tags:
         if int(tag) not in post_tags:
             add_tag = PostTag(post_id=post_id, tag_id=int(tag))
