@@ -15,6 +15,15 @@
 	<div>
 		<textarea name="content" id="content" cols="50" rows="10" placeholder="{{post.content}}"></textarea>
 	</div>
+	<div>
+		{% for tag in all_tags %} {% if tag.id in current_tags%}
+		<input type="checkbox" name="tag" id="tag_{{tag.id}}" value="{{tag.id}}" checked />
+		<label for="tag">{{tag.name}}</label><br />
+		{% else %}
+		<input type="checkbox" name="tag" id="tag_{{tag.id}}" value="{{tag.id}}" />
+		<label for="tag">{{tag.name}}</label><br />
+		{% endif %} {% endfor %}
+	</div>
 
 	<button>Edit</button>
 </form>

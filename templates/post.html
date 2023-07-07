@@ -2,7 +2,15 @@
 
 <h2>{{post.title}}</h2>
 <p>{{post.content}}</p>
-<em>By: {{post.op.first_name}} {{post.op.last_name}}</em>
+<div>
+	<em>By: {{post.op.first_name}} {{post.op.last_name}}</em>
+</div>
+<div class="tags">
+	<h6>Tags:</h6>
+	{% for tag in post.tags %}
+	<em class="tag">{{tag.name}}</em>
+	{% endfor %}
+</div>
 
 <form action="/users/{{post.op.id}}">
 	<button>Cancel</button>
